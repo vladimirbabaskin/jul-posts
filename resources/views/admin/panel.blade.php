@@ -1,2 +1,1 @@
-<?php
-    echo "Admin panel";
+{{ "Admin panel" }}

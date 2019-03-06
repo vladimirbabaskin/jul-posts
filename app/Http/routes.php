@@ -9,10 +9,13 @@
     | and give it the controller to call when that URI is requested.
     |
     */
+    use App\Post;
+    use Illuminate\Http\Request;
     Route::get(
             '/',
             function () {
-                return view('all-posts');
+                $new = Post::all();
+             return view('all-posts', ["new" => $new]);
             }
     );
     Route::get(
@@ -23,26 +26,26 @@
     );
     Route::post(
             '/admin/post/',
-            function () {
+            function (Request $request) {
                 /**
                  * TODO Process
                  */
-                return redirect("/admin/");
+                //return redirect("/admin/");
             }
     );
     Route::delete(
-            '/admin/post/delete/',
-            function () {
+            '/admin/post/delete/{post}',
+            function (Post $post) {
                 /**
                  * TODO Delete
                  */
-                return redirect("/admin/");
+                //return redirect("/admin/");
             }
     );
-    Route::post(
-            '/admin/post/edit/',
+    Route::get(
+            '/admin/post/',
             function () {
-                return view('edit');
+                return view('admin.post.edit');
             }
     );
     /**
@@ -50,10 +53,10 @@
      */
     Route::put(
             '/admin/post/update/',
-            function () {
+            function (Post $post) {
                 /**
                  * TODO Update
                  */
-                return redirect("/admin/");
+                //return redirect("/admin/");
             }
     );
